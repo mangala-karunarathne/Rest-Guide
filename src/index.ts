@@ -31,4 +31,10 @@ mongoose.Promise = Promise;
 
 mongoose.connect(MONGO_URL);
 
+const db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('Database connected Successfully !!!');
+});
+
 mongoose.connection.on("error", (error: Error) => console.log(error));
