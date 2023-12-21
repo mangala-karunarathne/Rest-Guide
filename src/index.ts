@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
 import mongoose from "mongoose";
+import router from "./router";
 
 const app = express();
 
@@ -33,8 +34,10 @@ mongoose.connect(MONGO_URL);
 
 const db = mongoose.connection;
 
-db.once('open', () => {
-  console.log('Database connected Successfully !!!');
+db.once("open", () => {
+  console.log("Database connected Successfully !!!");
 });
 
 mongoose.connection.on("error", (error: Error) => console.log(error));
+
+app.use("/", router());
