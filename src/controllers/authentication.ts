@@ -6,11 +6,19 @@ export const register = async (req: express.Request, res: express.Response) => {
   try {
     const { email, password, username } = req.body;
     if (!email || !password || !username) {
-      return res.sendStatus(400);
+      const response = {
+        message: "All inputs Required!!!",
+        status: 400
+      }
+      return res.status(400).json(response);
     }
     const userExists = await getUserByEmail(email);
     if (userExists) {
-      return res.sendStatus(400);
+      const response = {
+        message: "User Already Exist!!!",
+        status: 400
+      }
+      return res.status(400).json(response);
     }
 
     const salt = random();
@@ -27,4 +35,4 @@ export const register = async (req: express.Request, res: express.Response) => {
     console.log(error);
     return res.sendStatus(400);
   }
-}; 
+};
