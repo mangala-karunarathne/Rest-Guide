@@ -8,6 +8,10 @@ export const getAllUsers = async (
 ) => {
   try {
     const users = await getUsers();
+<<<<<<< HEAD
+=======
+    console.log("users", users);
+>>>>>>> 4a88752646f9677dd900e49c1dedc7696d5cbef4
     return res.status(200).json(users)
   } catch (error) {
     console.log(error);
